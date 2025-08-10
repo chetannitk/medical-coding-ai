@@ -6,9 +6,14 @@ A comprehensive machine learning project for automated medical coding using Name
 
 **Watch the AI in action!** See our system extract medical entities and recommend ICD codes in real-time:
 
-![Medical Coding AI Demo](https://github.com/chetannitk/medical-coding-ai/raw/main/demo/terminal_demo.svg)
+![Medical Coding AI Demo](https://github.com/chetannitk/medical-coding-ai/raw/main/demo/demo_banner.svg)
 
-*🖥️ Interactive terminal demo showing clinical NER extraction and ICD code recommendations with confidence scores*
+*🚀 AI-powered medical coding with clinical NER extraction and ICD recommendations*
+
+### 🖥️ Terminal Demo
+![Terminal Demo](https://github.com/chetannitk/medical-coding-ai/raw/main/demo/github_demo.svg)
+
+*📟 Detailed terminal view showing live processing of medical text and ICD code recommendations*
 
 ### 📺 Additional Demo Formats:
 - **Slideshow Video**: [medical_coding_ai_demo.mp4](https://github.com/chetannitk/medical-coding-ai/raw/main/demo/medical_coding_ai_demo.mp4) *(14 seconds, 1080p)*

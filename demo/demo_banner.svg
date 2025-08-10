@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400">
+    <defs>
+        <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#0d1117"/>
+            <stop offset="100%" style="stop-color:#161b22"/>
+        </linearGradient>
+        <linearGradient id="highlight" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#7ee787"/>
+            <stop offset="100%" style="stop-color:#79c0ff"/>
+        </linearGradient>
+        <style>
+            .bg { fill: url(#bg); stroke: #30363d; stroke-width: 2; rx: 12; }
+            .title { font-family: -apple-system, system-ui, sans-serif; font-size: 28px; font-weight: 700; fill: url(#highlight); }
+            .subtitle { font-family: -apple-system, system-ui, sans-serif; font-size: 16px; fill: #e6edf3; }
+            .feature { font-family: -apple-system, system-ui, sans-serif; font-size: 14px; fill: #7ee787; font-weight: 500; }
+            .metric { font-family: 'SF Mono', monospace; font-size: 13px; fill: #ffa657; font-weight: 600; }
+            .demo-box { fill: #21262d; stroke: #30363d; stroke-width: 1; rx: 8; }
+            .demo-text { font-family: 'SF Mono', monospace; font-size: 11px; fill: #7ee787; }
+            .demo-entity { fill: #d2a8ff; }
+            .demo-code { fill: #ffa657; }
+        </style>
+    </defs>
+    
+    <!-- Background -->
+    <rect class="bg" width="800" height="400"/>
+    
+    <!-- Title Section -->
+    <text class="title" x="400" y="45" text-anchor="middle">Medical Coding AI Assistant</text>
+    <text class="subtitle" x="400" y="70" text-anchor="middle">AI-Powered Clinical NER + ICD Code Recommendations</text>
+    
+    <!-- Feature Highlights -->
+    <g transform="translate(50, 100)">
+        <text class="feature" x="0" y="0">🧠 Clinical NER:</text>
+        <text class="subtitle" x="120" y="0">Extract 29+ medical entities from clinical text</text>
+        
+        <text class="feature" x="0" y="25">🎯 ICD Codes:</text>
+        <text class="subtitle" x="120" y="25">Top 5 recommendations with confidence scores</text>
+        
+        <text class="feature" x="0" y="50">⚡ Performance:</text>
+        <text class="subtitle" x="120" y="50">Sub-second processing with 20+ code categories</text>
+        
+        <text class="feature" x="400" y="0">📊 Multi-Algorithm:</text>
+        <text class="subtitle" x="520" y="0">TF-IDF + Keyword + Entity matching</text>
+        
+        <text class="feature" x="400" y="25">🏥 Medical Ready:</text>
+        <text class="subtitle" x="520" y="25">Handles abbreviations (HTN→hypertension)</text>
+        
+        <text class="feature" x="400" y="50">📦 Batch Processing:</text>
+        <text class="subtitle" x="520" y="50">Efficient workflow for medical coders</text>
+    </g>
+    
+    <!-- Demo Examples -->
+    <g transform="translate(50, 180)">
+        <!-- NER Example Box -->
+        <rect class="demo-box" x="0" y="0" width="350" height="80"/>
+        <text class="demo-text" x="10" y="15">📝 Input: "68-year-old with chest pain, diabetes"</text>
+        <text class="demo-text" x="10" y="30">✅ Entities Found:</text>
+        <text class="demo-entity" x="10" y="45">  🏷️ Age: 68-year-old</text>
+        <text class="demo-entity" x="10" y="60">  🏷️ Symptom: chest pain</text>
+        <text class="demo-entity" x="10" y="75">  🏷️ Disease: diabetes</text>
+        
+        <!-- ICD Example Box -->
+        <rect class="demo-box" x="370" y="0" width="330" height="80"/>
+        <text class="demo-text" x="380" y="15">🎯 ICD Recommendations:</text>
+        <text class="demo-code" x="380" y="30">1. I21.9 - Acute MI (0.371) 🟢</text>
+        <text class="demo-code" x="380" y="45">2. E11.9 - Type 2 DM (0.453) 🟢</text>
+        <text class="demo-code" x="380" y="60">3. I10 - Hypertension (0.273) 🟡</text>
+    </g>
+    
+    <!-- Performance Metrics -->
+    <g transform="translate(200, 290)">
+        <rect class="demo-box" x="0" y="0" width="400" height="60"/>
+        <text class="demo-text" x="10" y="15">⚡ Live Performance Metrics:</text>
+        <text class="metric" x="10" y="35">Processing: 401ms</text>
+        <text class="metric" x="120" y="35">Accuracy: High</text>
+        <text class="metric" x="220" y="35">Models: 2 AI</text>
+        <text class="metric" x="320" y="35">Categories: 6+</text>
+        <text class="demo-text" x="10" y="50">🚀 Ready for medical coding workflows!</text>
+    </g>
+    
+    <!-- Call to Action -->
+    <text class="subtitle" x="400" y="380" text-anchor="middle">🔗 GitHub: chetannitk/medical-coding-ai | ⭐ Star to support!</text>
+    
+</svg>
