@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+    <style>
+        .terminal {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 12px;
+            fill: #00ff00;
+        }
+        .terminal-bg {
+            fill: #000000;
+            stroke: #333333;
+            stroke-width: 2;
+            rx: 5;
+        }
+        .terminal-header {
+            fill: #333333;
+            stroke: #666666;
+            stroke-width: 1;
+        }
+        .terminal-title {
+            font-family: system-ui, sans-serif;
+            font-size: 11px;
+            fill: #ffffff;
+        }
+        .cursor {
+            fill: #00ff00;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+    </style>
+    
+    <!-- Terminal window -->
+    <rect class="terminal-bg" x="0" y="0" width="800" height="500"/>
+    
+    <!-- Terminal header -->
+    <rect class="terminal-header" x="0" y="0" width="800" height="25"/>
+    
+    <!-- Terminal title -->
+    <text class="terminal-title" x="10" y="17">Medical Coding AI Assistant - Demo</text>
+    
+    <!-- Terminal buttons -->
+    <circle cx="20" cy="12.5" r="5" fill="#ff5f56"/>
+    <circle cx="35" cy="12.5" r="5" fill="#ffbd2e"/>
+    <circle cx="50" cy="12.5" r="5" fill="#27c93f"/>
+    
+    <!-- Terminal content -->
+    <g transform="translate(10, 35)">
+
+        <g opacity="0">
+            <animateTransform attributeName="opacity" 
+                values="0;0;1;1;0;0" 
+                dur="12.0s" 
+                begin="0s"
+                repeatCount="indefinite"/>
+
+            <text class="terminal" x="0" y="20">
+                [FIRE]==========================================================[FIRE]
+            </text>
+            <text class="terminal" x="0" y="36">
+                [HOSPITAL]         MEDICAL CODING AI ASSISTANT - LIVE DEMO          [HOSPITAL]
+            </text>
+        </g>
+        <g opacity="0">
+            <animateTransform attributeName="opacity" 
+                values="0;0;1;1;0;0" 
+                dur="12.0s" 
+                begin="3.0s"
+                repeatCount="indefinite"/>
+
+            <text class="terminal" x="0" y="20">
+                [FIRE]==========================================================[FIRE]
+            </text>
+            <text class="terminal" x="0" y="36">
+                [ROBOT] AI-Powered Medical Coding with NER + ICD Recommendations
+            </text>
+            <text class="terminal" x="0" y="52">
+                [LIGHTNING] Real-time clinical text analysis and ICD code suggestions
+            </text>
+            <text class="terminal" x="0" y="68">
+                [INBOX] Loading Clinical NER model.... [CHECK]
+            </text>
+            <text class="terminal" x="0" y="84">
+                Loaded model: d4data/biomedical-ner-all
+            </text>
+            <text class="terminal" x="0" y="100">
+                [INBOX] Loading ICD Recommendation engine.... [CHECK]
+            </text>
+            <text class="terminal" x="0" y="116">
+                Loaded model: d4data/biomedical-ner-all
+            </text>
+            <text class="terminal" x="0" y="132">
+                [ROCKET] System ready! Let's see it in action...
+            </text>
+        </g>
+        <g opacity="0">
+            <animateTransform attributeName="opacity" 
+                values="0;0;1;1;0;0" 
+                dur="12.0s" 
+                begin="6.0s"
+                repeatCount="indefinite"/>
+
+            <text class="terminal" x="0" y="20">
+                [FIRE]==========================================================[FIRE]
+            </text>
+            <text class="terminal" x="0" y="36">
+                [HOSPITAL]     DEMO 1: CLINICAL NER - MEDICAL ENTITY EXTRACTION     [HOSPITAL]
+            </text>
+        </g>
+        <g opacity="0">
+            <animateTransform attributeName="opacity" 
+                values="0;0;1;1;0;0" 
+                dur="12.0s" 
+                begin="9.0s"
+                repeatCount="indefinite"/>
+
+            <text class="terminal" x="0" y="20">
+                ==================================================
+            </text>
+            <text class="terminal" x="0" y="36">
+                [SEARCH] Extracting medical entities........ [CHECK]
+            </text>
+            <text class="terminal" x="0" y="52">
+                [CHECK] EXTRACTED 29 MEDICAL ENTITIES:
+            </text>
+            <text class="terminal" x="0" y="68">
+                [LABEL] Age: 68 - year - old
+            </text>
+            <text class="terminal" x="0" y="84">
+                [LABEL] Sex: female
+            </text>
+            <text class="terminal" x="0" y="100">
+                [LABEL] Clinical_event: presents
+            </text>
+            <text class="terminal" x="0" y="116">
+                [LABEL] Detailed_description: acute, peripheral
+            </text>
+            <text class="terminal" x="0" y="132">
+                [LABEL] Biological_structure: chest
+            </text>
+            <text class="terminal" x="0" y="148">
+                [LABEL] Sign_symptom: shortness of breath, ta, ##chy, ##cardia
+            </text>
+            <text class="terminal" x="0" y="164">
+                   ... and 2 more
+            </text>
+            <text class="terminal" x="0" y="180">
+                [LABEL] Lab_value: elevated, st
+            </text>
+            <text class="terminal" x="0" y="196">
+                [LABEL] Diagnostic_procedure: troponin, physical exam, ekg
+            </text>
+            <text class="terminal" x="0" y="212">
+                [LABEL] History: diabetes mellitus, type 2, hyperlipide
+            </text>
+            <text class="terminal" x="0" y="228">
+                [LABEL] Medication: met, li, ##sin, ##op
+            </text>
+            <text class="terminal" x="0" y="244">
+                   ... and 4 more
+            </text>
+            <text class="terminal" x="0" y="260">
+                [LABEL] Severity: mild
+            </text>
+        </g>
+    </g>
+    
+    <!-- Blinking cursor -->
+    <rect class="cursor" x="15" y="470" width="8" height="16"/>
+    
+</svg>
