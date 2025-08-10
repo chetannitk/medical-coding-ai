@@ -2,6 +2,21 @@
 
 A comprehensive machine learning project for automated medical coding using Named Entity Recognition (NER) and ICD code recommendation algorithms.
 
+## 🎬 Demo Video
+
+**Watch the AI in action!** See how our system extracts medical entities and recommends ICD codes in real-time:
+
+https://github.com/yourusername/medical-coding-ai/raw/main/demo/medical_coding_ai_demo.mp4
+
+*🎥 14-second slideshow showcasing clinical NER extraction and ICD code recommendations with confidence scores*
+
+### Key Demo Highlights:
+- ✅ **Real medical entity extraction** (29 entities from clinical text)
+- ✅ **Accurate ICD recommendations** (I21.9 for MI, E11.9 for diabetes)  
+- ✅ **High confidence scoring** (>0.3 for accurate matches)
+- ✅ **Fast processing** (< 500ms per case)
+- ✅ **Professional medical workflow** ready for deployment
+
 ## 🚀 Features
 
 ### Clinical NER (Named Entity Recognition)
@@ -105,7 +120,30 @@ python examples/ner_example.py
 
 # ICD code recommendation examples
 python examples/icd_recommendation_example.py
+
+# Quick visual demo (same as in video)
+python demo/quick_demo.py
+
+# Interactive demo for presentations
+python demo/interactive_demo.py
 ```
+
+## 🎥 Create Your Own Demo Video
+
+Generate professional demo videos using our built-in tools:
+
+```bash
+# Create slideshow video (like the one above)
+python demo/create_video.py
+
+# Record live demo
+python demo/screen_recorder.py
+
+# Interactive recording session
+python demo/interactive_demo.py
+```
+
+See [`demo/README.md`](demo/README.md) for complete video production guide.
 
 ## 🧪 Testing
 
