@@ -1,0 +1,190 @@
+{
+  "demo_cases": {
+    "emergency_cases": [
+      {
+        "id": "ED001",
+        "title": "Acute STEMI",
+        "text": "68-year-old male presents to ED with crushing chest pain radiating to left arm, onset 2 hours ago. Diaphoretic, nauseous. ECG shows ST elevation in leads II, III, aVF. Troponin I elevated at 25.3 ng/mL. Patient has history of hypertension and diabetes mellitus type 2.",
+        "expected_primary": "I21.9",
+        "expected_secondary": ["E11.9", "I10"],
+        "complexity": "high"
+      },
+      {
+        "id": "ED002", 
+        "title": "Respiratory Failure",
+        "text": "72-year-old female with known COPD presents with increased dyspnea, productive cough with green sputum, and fever. Arterial blood gas shows pH 7.32, pCO2 55, pO2 65. Chest X-ray reveals bilateral lower lobe infiltrates. Requiring BiPAP support.",
+        "expected_primary": "J44.1",
+        "expected_secondary": ["J18.9"],
+        "complexity": "high"
+      }
+    ],
+    
+    "routine_cases": [
+      {
+        "id": "RT001",
+        "title": "Diabetes Follow-up",
+        "text": "45-year-old male with type 2 diabetes mellitus for routine follow-up. HbA1c is 8.9%, up from 7.2% six months ago. Patient reports polyuria and polydipsia. Currently on metformin 1000mg twice daily. Blood pressure 145/92.",
+        "expected_primary": "E11.9",
+        "expected_secondary": ["I10"],
+        "complexity": "medium"
+      },
+      {
+        "id": "RT002",
+        "title": "Hypertension Management", 
+        "text": "58-year-old female established patient with essential hypertension. Blood pressure readings consistently elevated at 165/95 despite lisinopril 20mg daily. Patient compliant with medication. No target organ damage evident.",
+        "expected_primary": "I10",
+        "expected_secondary": [],
+        "complexity": "low"
+      }
+    ],
+
+    "complex_cases": [
+      {
+        "id": "CX001",
+        "title": "Multi-system Disease",
+        "text": "73-year-old male with multiple comorbidities presents for comprehensive evaluation. Past medical history significant for congestive heart failure (EF 35%), type 2 diabetes with diabetic nephropathy (eGFR 45), atrial fibrillation on warfarin, and COPD. Recent hospitalization for heart failure exacerbation. Current medications include metformin, lisinopril, carvedilol, furosemide, and albuterol inhaler.",
+        "expected_primary": "I50.9",
+        "expected_secondary": ["E11.9", "I48.91", "J44.1"],
+        "complexity": "very_high"
+      }
+    ],
+
+    "specialty_cases": [
+      {
+        "id": "SP001",
+        "title": "Cardiology Consultation",
+        "text": "62-year-old male referred for cardiology consultation due to abnormal stress test. Patient reports chest discomfort with exertion, relieved by rest. Stress echocardiogram shows inducible ischemia in the inferior wall. Coronary angiography planned.",
+        "expected_primary": "I25.10",
+        "expected_secondary": [],
+        "complexity": "medium",
+        "specialty": "Cardiology"
+      },
+      {
+        "id": "SP002", 
+        "title": "Psychiatry Consultation",
+        "text": "34-year-old female presents with persistent depressed mood, anhedonia, fatigue, and sleep disturbances for the past 6 weeks. PHQ-9 score of 18. No previous psychiatric history. Recently divorced with job loss. Denies suicidal ideation.",
+        "expected_primary": "F32.9",
+        "expected_secondary": [],
+        "complexity": "medium",
+        "specialty": "Psychiatry"
+      },
+      {
+        "id": "SP003",
+        "title": "Pulmonology Consultation", 
+        "text": "67-year-old male with 40-pack-year smoking history presents with progressive dyspnea and chronic cough. Pulmonary function tests show FEV1/FVC ratio of 0.65. CT chest reveals emphysematous changes bilaterally. Currently using albuterol and tiotropium inhalers.",
+        "expected_primary": "J44.1",
+        "expected_secondary": [],
+        "complexity": "medium",
+        "specialty": "Pulmonology"
+      }
+    ],
+
+    "abbreviation_heavy_cases": [
+      {
+        "id": "AB001",
+        "title": "Abbreviation Test Case",
+        "text": "Pt w/ PMH of HTN, DM, CAD s/p MI 2018, CHF (EF 40%), CKD stage 3, presents w/ SOB, orthopnea, and LE edema. Current meds include ACEI, BB, diuretic. BNP elevated. CXR shows pulmonary congestion.",
+        "expected_primary": "I50.9",
+        "expected_secondary": ["I25.10", "E11.9", "I10"],
+        "complexity": "high",
+        "note": "Tests abbreviation expansion and recognition"
+      }
+    ]
+  },
+
+  "demo_scenarios": {
+    "live_demo_sequence": [
+      {
+        "step": 1,
+        "action": "clinical_ner",
+        "case_id": "ED001",
+        "focus": "Show entity extraction with confidence scores"
+      },
+      {
+        "step": 2, 
+        "action": "icd_recommendation",
+        "case_id": "ED001",
+        "focus": "Top 5 recommendations with cardiovascular focus"
+      },
+      {
+        "step": 3,
+        "action": "batch_processing", 
+        "case_ids": ["RT001", "RT002", "SP002"],
+        "focus": "Efficient workflow for multiple cases"
+      },
+      {
+        "step": 4,
+        "action": "complex_case",
+        "case_id": "CX001", 
+        "focus": "Multi-condition analysis and specialty distribution"
+      },
+      {
+        "step": 5,
+        "action": "abbreviation_handling",
+        "case_id": "AB001",
+        "focus": "Medical abbreviation expansion capabilities"
+      }
+    ]
+  },
+
+  "expected_performance": {
+    "processing_time_targets": {
+      "simple_case": "< 500ms",
+      "complex_case": "< 1000ms", 
+      "batch_10_cases": "< 5000ms"
+    },
+    "accuracy_expectations": {
+      "primary_diagnosis_top_1": "> 80%",
+      "primary_diagnosis_top_3": "> 95%",
+      "entity_extraction_precision": "> 85%"
+    }
+  },
+
+  "demo_talking_points": {
+    "clinical_ner": [
+      "Extracts medical entities with biomedical NER models",
+      "Categorizes by Disease, Symptom, Medication, Anatomy", 
+      "Provides confidence scores for each entity",
+      "Handles complex medical terminology and abbreviations"
+    ],
+    "icd_recommendations": [
+      "Multi-algorithm scoring: TF-IDF + keyword + entity matching",
+      "Top 5 most probable ICD-10 codes with confidence scores",
+      "Shows matched keywords for transparency",
+      "Groups by medical specialty for workflow efficiency"
+    ],
+    "workflow_integration": [
+      "Batch processing for daily coder workflow",
+      "Real-time recommendations under 1 second",
+      "Specialty distribution analysis for complex cases",
+      "Confidence indicators for quality assurance"
+    ]
+  },
+
+  "video_segments": {
+    "intro": {
+      "duration": "30s",
+      "content": "Project overview and capabilities"
+    },
+    "clinical_ner_demo": {
+      "duration": "90s", 
+      "content": "Entity extraction demonstration"
+    },
+    "icd_recommendation_demo": {
+      "duration": "120s",
+      "content": "ICD code recommendations with examples"
+    },
+    "workflow_demo": {
+      "duration": "60s",
+      "content": "Batch processing and real-time workflow"
+    },
+    "performance_metrics": {
+      "duration": "30s",
+      "content": "Speed, accuracy, and system capabilities"
+    },
+    "conclusion": {
+      "duration": "30s", 
+      "content": "Call to action and GitHub repository"
+    }
+  }
+}
