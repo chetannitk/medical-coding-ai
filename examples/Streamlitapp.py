@@ -33,6 +33,14 @@ st.markdown("""
         font-weight: bold;
         color: #2c3e50;
     }
+    div.stButton > button[kind="secondary"] {
+        background-color: #28a745;
+        color: white;
+    }
+    div.stButton > button[kind="secondary"]:hover {
+        background-color: #218838;
+        color: white;
+    }
     </style>
 """, unsafe_allow_html=True)
 
@@ -149,7 +157,11 @@ for idx, proc in enumerate(matching_procedures, 1):
             st.markdown(f'<div class="choice-header">Choice {idx}: {proc["name"]}</div>', unsafe_allow_html=True)
         
         with col2:
-            if st.button(f"Select", key=f"select_{idx}"):
+            is_selected = st.session_state.selected_choice == idx
+            button_type = "secondary" if is_selected else "primary"
+            button_label = "✓ Selected" if is_selected else "Select"
+            
+            if st.button(button_label, key=f"select_{idx}", type=button_type):
                 st.session_state.selected_choice = idx
         
         # Expandable sections for reasoning and description
