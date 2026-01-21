@@ -7,7 +7,7 @@ import uuid
 # Page configuration
 st.set_page_config(page_title="Surgical Procedure Review", layout="wide")
 
-# Custom CSS for better styling
+# Custom CSS for better styling and session cleanup
 st.markdown("""
     <style>
     .main-header {
@@ -43,6 +43,16 @@ st.markdown("""
         color: white;
     }
     </style>
+    <script>
+    // Cleanup session on page unload
+    window.addEventListener('beforeunload', function(e) {
+        // Send beacon to mark session as ended
+        const sessionId = window.parent.document.querySelector('[data-testid="stSessionState"]')?.textContent;
+        if (sessionId) {
+            navigator.sendBeacon('/cleanup_session', JSON.stringify({session_id: sessionId}));
+        }
+    });
+    </script>
 """, unsafe_allow_html=True)
 
 # Database functions
@@ -145,11 +155,11 @@ def get_next_free_query(session_id):
     conn = sqlite3.connect('surgical_reviews.db')
     c = conn.cursor()
     
-    # Free up stale sessions (older than 1 hour)
+    # Free up stale sessions (older than 5 minutes of inactivity)
     c.execute('''UPDATE query_procedures 
                  SET status = 'free', reviewer_session_id = NULL 
                  WHERE status = 'pending' 
-                 AND datetime(session_timestamp) < datetime('now', '-1 hour')''')
+                 AND datetime(session_timestamp) < datetime('now', '-5 minutes')''')
     
     # Get next free query
     c.execute('''SELECT id, query_procedure FROM query_procedures 
@@ -210,6 +220,26 @@ def free_current_query(query_id):
     conn.commit()
     conn.close()
 
+def cleanup_session(session_id):
+    """Free up any queries held by this session"""
+    conn = sqlite3.connect('surgical_reviews.db')
+    c = conn.cursor()
+    c.execute('''UPDATE query_procedures 
+                 SET status = 'free', reviewer_session_id = NULL 
+                 WHERE reviewer_session_id = ? AND status = 'pending' ''', (session_id,))
+    conn.commit()
+    conn.close()
+
+def update_session_heartbeat(session_id):
+    """Update session timestamp to keep it alive"""
+    conn = sqlite3.connect('surgical_reviews.db')
+    c = conn.cursor()
+    c.execute('''UPDATE query_procedures 
+                 SET session_timestamp = CURRENT_TIMESTAMP
+                 WHERE reviewer_session_id = ? AND status = 'pending' ''', (session_id,))
+    conn.commit()
+    conn.close()
+
 # Initialize database
 init_database()
 seed_sample_data()
@@ -225,6 +255,19 @@ if 'matching_choices' not in st.session_state:
     st.session_state.matching_choices = []
 if 'selected_choice' not in st.session_state:
     st.session_state.selected_choice = None
+if 'last_heartbeat' not in st.session_state:
+    st.session_state.last_heartbeat = datetime.now()
+
+# Update heartbeat every 30 seconds to keep session alive
+current_time = datetime.now()
+if (current_time - st.session_state.last_heartbeat).seconds > 30:
+    if st.session_state.current_query_id:
+        update_session_heartbeat(st.session_state.session_id)
+    st.session_state.last_heartbeat = current_time
+
+# Register cleanup on session end
+import atexit
+atexit.register(cleanup_session, st.session_state.session_id)
 
 # Load query if not loaded
 if st.session_state.current_query_id is None:
